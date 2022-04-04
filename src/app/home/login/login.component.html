@@ -1,0 +1,15 @@
+<h4 class="text-center">Login</h4>
+
+<form class="formulario form mt-4" (ngSubmit)="(login())">
+  <div class="mb-3">
+    <label for="InputEmail">Email</label>
+    <input type="email" class="form-control" id="inputEmail" placeholder="exemplo@email.com" [(ngModel)]="email" name="email" />
+  </div>
+  <div class="mb-3">
+    <label for="InputSenha">Senha</label>
+    <input type="password" class="form-control" id="inputSenha" placeholder="Senha" [(ngModel)]="senha" name="senha">
+  </div>
+  <div class="d-grip gap-2">
+    <button type="submit" class="btn btn-primary col-12">Login</button>
+  </div>
+</form>

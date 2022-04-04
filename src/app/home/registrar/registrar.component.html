@@ -1,0 +1,65 @@
+<div class="registrarForm">
+  <h4 class="text-center">Registrar novo usuário</h4>
+
+  <form class="form mt-4">
+    <div class="registrarForm mb-3 col-6">
+      <input type="text" class="form-control" placeholder="Nome completo" />
+    </div>
+    <div class="registrarForm mb-3 col-6">
+      <input type="email" class="form-control" placeholder="E-mail" />
+    </div>
+    <div class="registrarForm mb-3 col-6">
+      <input type="text" class="form-control" placeholder="CPF" />
+    </div>
+    <div class="registrarForm mb-3 col-6">
+      <input type="password" class="form-control" placeholder="Senha" />
+    </div>
+
+    <div class="mb-1">
+      <strong>Endereço</strong>
+    </div>
+    <div class="registrarForm mb-3 col-6">
+      <input type="text" class="form-control" placeholder="Logradouro" />
+    </div>
+    <div class="registrarForm mb-3 col-6">
+      <select class="form-select">
+        <option disabled selected>Selecione sua cidade</option>
+        <option value="São Luís">São Luís</option>
+        <option value="Fortaleza">Fortaleza</option>
+        <option value="São Paulo">São Paulo</option>
+        <option value="Aracaju">Aracaju</option>
+      </select>
+    </div>
+    <div class="registrarForm mb-3 col-6">
+      <select class="form-select">
+        <option disabled selected>CEP</option>
+        <option value="São Luís">65030440</option>
+        <option value="Fortaleza">60060095</option>
+        <option value="São Paulo">01035901</option>
+        <option value="Aracaju">49010060</option>
+      </select>
+    </div>
+
+    <div class="mb-1">
+      <strong>Dados de pagamento</strong>
+    </div>
+    <div class="registrarForm mb-3 col-6">
+      <input type="text" class="form-control" placeholder="Número do cartão" />
+      <small id="emailHelp" class="form-text text-muted">XXXX XXXX XXXX XXXX</small>
+    </div>
+    <div class="registrarForm mb-3 col-6">
+      <input type="text" class="form-control" placeholder="Nome do cartão" />
+    </div>
+    <div class="registrarForm mb-3 col-6">
+      <input type="text" class="form-control" placeholder="Data de Validade" />
+      <small id="emailHelp" class="form-text text-muted">mes/ano</small>
+    </div>
+    <div class="registrarForm mb-3 col-6">
+      <input type="text" class="form-control" placeholder="Código de segurança" />
+      <small id="emailHelp" class="form-text text-muted">xxx</small>
+    </div>
+
+    <button class="btn btn-primary col-6">Registrar-se</button>
+  </form>
+  <p class="mt-3">Já tem uma conta ? Faça <a [routerLink]="['']">login</a></p>
+</div>

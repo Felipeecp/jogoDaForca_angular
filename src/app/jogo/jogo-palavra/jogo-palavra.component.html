@@ -1,0 +1,11 @@
+<div class="palavra">
+  <ng-container *ngIf="palavraEscolhida">
+    <div *ngFor="let letra of letrasPalavraEscolhida">
+      <p class="letra">{{letra.toUpperCase()}}</p>
+    </div>
+  </ng-container>
+</div>
+
+<div *ngIf="palavraEscolhida">
+  <p>{{palavraEscolhida.categoria}}</p>
+</div>

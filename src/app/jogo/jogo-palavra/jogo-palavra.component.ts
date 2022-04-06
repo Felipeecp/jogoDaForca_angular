@@ -1,13 +1,13 @@
-import { Palavra } from './../../home/models/palavra';
-import { JogoMainService } from './jogo-main.service';
 import { Component, OnInit } from '@angular/core';
+import { Palavra } from 'src/app/home/models/palavra';
+import { JogoMainService } from '../jogo-main/jogo-main.service';
 
 @Component({
-  selector: 'app-jogo-main',
-  templateUrl: './jogo-main.component.html',
-  styleUrls: ['./jogo-main.component.css'],
+  selector: 'app-jogo-palavra',
+  templateUrl: './jogo-palavra.component.html',
+  styleUrls: ['./jogo-palavra.component.css'],
 })
-export class JogoMainComponent implements OnInit {
+export class JogoPalavraComponent implements OnInit {
   palavraEscolhida!: Palavra;
   letrasPalavraEscolhida!: String[];
 

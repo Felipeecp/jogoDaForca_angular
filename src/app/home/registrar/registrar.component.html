@@ -1,61 +1,70 @@
 <div class="registrarForm">
   <h4 class="text-center">Registrar novo usuário</h4>
 
-  <form class="form mt-4">
+  <form class="form mt-4" [formGroup]="registroForm" (submit)="cadastrar()">
     <div class="registrarForm mb-3 col-6">
-      <input type="text" class="form-control" placeholder="Nome completo" />
+      <input type="text" class="form-control" placeholder="Nome completo" formControlName="nome" />
     </div>
     <div class="registrarForm mb-3 col-6">
-      <input type="email" class="form-control" placeholder="E-mail" />
+      <input type="email" class="form-control" placeholder="E-mail" formControlName="email" />
     </div>
     <div class="registrarForm mb-3 col-6">
-      <input type="text" class="form-control" placeholder="CPF" />
+      <input type="text" class="form-control" placeholder="CPF" formControlName="cpf" />
     </div>
     <div class="registrarForm mb-3 col-6">
-      <input type="password" class="form-control" placeholder="Senha" />
+      <input type="text" class="form-control" placeholder="Celular" formControlName="celular" />
+    </div>
+    <div class="registrarForm mb-3 col-6">
+      <input type="password" class="form-control" placeholder="Senha" formControlName="senha" />
     </div>
 
     <div class="mb-1">
       <strong>Endereço</strong>
     </div>
     <div class="registrarForm mb-3 col-6">
-      <input type="text" class="form-control" placeholder="Logradouro" />
+      <input type="text" class="form-control" placeholder="Logradouro" formControlName="logradouro" />
+    </div>
+    <div class="registrarForm mb-3 col-6">
+      <select class="form-select" formControlName="endereco">
+        <option disabled selected>Selecione seu estado</option>
+        <option *ngFor="let endereco of enderecos" [ngValue]="endereco">
+          {{endereco.estado}}
+        </option>
+      </select>
     </div>
     <div class="registrarForm mb-3 col-6">
       <select class="form-select">
         <option disabled selected>Selecione sua cidade</option>
-        <option value="São Luís">São Luís</option>
-        <option value="Fortaleza">Fortaleza</option>
-        <option value="São Paulo">São Paulo</option>
-        <option value="Aracaju">Aracaju</option>
+        <option *ngFor="let endereco of enderecos" [value]="endereco.cidade">
+          {{endereco.cidade}}
+        </option>
       </select>
     </div>
     <div class="registrarForm mb-3 col-6">
       <select class="form-select">
         <option disabled selected>CEP</option>
-        <option value="São Luís">65030440</option>
-        <option value="Fortaleza">60060095</option>
-        <option value="São Paulo">01035901</option>
-        <option value="Aracaju">49010060</option>
+        <option *ngFor="let endereco of enderecos" [value]="endereco.cep">
+          {{endereco.cep}}
+        </option>
       </select>
     </div>
 
     <div class="mb-1">
       <strong>Dados de pagamento</strong>
     </div>
-    <div class="registrarForm mb-3 col-6">
-      <input type="text" class="form-control" placeholder="Número do cartão" />
+    <div class="registrarForm mb-3 col-6" formGroupName="cartao">
+      <input type="text" class="form-control" placeholder="Número do cartão" formControlName="numero" />
       <small id="emailHelp" class="form-text text-muted">XXXX XXXX XXXX XXXX</small>
     </div>
-    <div class="registrarForm mb-3 col-6">
-      <input type="text" class="form-control" placeholder="Nome do cartão" />
+    <div class="registrarForm mb-3 col-6" formGroupName="cartao">
+      <input type="text" class="form-control" placeholder="Nome do cartão" formControlName="nomeCartao" />
     </div>
-    <div class="registrarForm mb-3 col-6">
-      <input type="text" class="form-control" placeholder="Data de Validade" />
+    <div class="registrarForm mb-3 col-6" formGroupName="cartao">
+      <input type="text" class="form-control" placeholder="Data de Validade" formControlName="dataValidade" />
       <small id="emailHelp" class="form-text text-muted">mes/ano</small>
     </div>
-    <div class="registrarForm mb-3 col-6">
-      <input type="text" class="form-control" placeholder="Código de segurança" />
+    <div class="registrarForm mb-3 col-6" formGroupName="cartao">
+      <input type="text" class="form-control" placeholder="Código de segurança" formControlName="codigoSeguranca" />
       <small id="emailHelp" class="form-text text-muted">xxx</small>
     </div>
 

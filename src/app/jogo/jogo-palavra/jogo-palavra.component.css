@@ -1,0 +1,12 @@
+.palavra {
+  display: flex;
+  flex-direction: row;
+}
+
+.palavra .letra {
+  text-align: center;
+  width: 1em;
+  margin-right: 4px;
+  margin-left: 4px;
+  border-bottom: 3px solid #e75b7d;
+}

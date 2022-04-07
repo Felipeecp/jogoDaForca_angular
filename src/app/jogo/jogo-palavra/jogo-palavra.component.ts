@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { Palavra } from 'src/app/home/models/palavra';
 import { JogoMainService } from '../jogo-main/jogo-main.service';
 
@@ -7,22 +13,24 @@ import { JogoMainService } from '../jogo-main/jogo-main.service';
   templateUrl: './jogo-palavra.component.html',
   styleUrls: ['./jogo-palavra.component.css'],
 })
-export class JogoPalavraComponent implements OnInit {
-  palavraEscolhida!: Palavra;
-  letrasPalavraEscolhida!: String[];
+export class JogoPalavraComponent implements OnInit, OnChanges {
+  @Input() categoriaAtual!: string;
+  @Input() listaLetrasTentadas!: string[];
 
-  constructor(private jogoMainService: JogoMainService) {}
+  listaPalavras: Palavra[] = [];
 
-  ngOnInit(): void {
-    this.jogoMainService.palavraAleatoria().subscribe({
-      next: (palavra) => {
-        this.palavraEscolhida = palavra;
-        this.letrasPalavraEscolhida = palavra.nome.split('');
-        const tamanho = this.letrasPalavraEscolhida.length;
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
+  constructor() {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const listaDinamicaAtual = changes?.['listaLetrasTentadas']?.currentValue;
+    if (listaDinamicaAtual) {
+      this.alteraListaDinamica(listaDinamicaAtual);
+    }
   }
+
+  alteraListaDinamica(lista: string[]) {
+    this.listaLetrasTentadas = lista;
+  }
+
+  ngOnInit(): void {}
 }

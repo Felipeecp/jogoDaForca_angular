@@ -1,3 +1,14 @@
+.teclado {
+  max-width: 500px;
+  margin: 30px auto;
+  display: flex;
+  flex-direction: row;
+}
+.teclas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 .teclas button {
   width: 3em;
   height: 3em;
@@ -9,4 +20,8 @@
   border: 1px solid #e75b7d;
   color: #e75b7d;
   font-weight: 900;
+}
+
+.teclas button:disabled {
+  opacity: 0.3;
 }

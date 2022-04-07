@@ -1,5 +1,10 @@
 <div class="principal">
-  <app-jogo-forca></app-jogo-forca>
-  <app-jogo-palavra></app-jogo-palavra>
-  <app-jogo-teclado></app-jogo-teclado>
+  <app-jogo-forca [tentativas]="totalTentativas"></app-jogo-forca>
+  <app-jogo-palavra [listaLetrasTentadas]="listaDinamica" [categoriaAtual]="categoria"></app-jogo-palavra>
+  <ng-container *ngIf="(totalTentativas !== 0 && listaDinamicaTemValorVazio) else btnRecomecar">
+    <app-jogo-teclado (teclaPressionada)="preencheLetraAtual($event)"></app-jogo-teclado>
+  </ng-container>
+  <ng-template #btnRecomecar>
+    <button (click)="recomecar()">Recomeçar</button>
+  </ng-template>
 </div>

@@ -1,15 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 
 @Component({
   selector: 'app-jogo-forca',
   templateUrl: './jogo-forca.component.html',
-  styleUrls: ['./jogo-forca.component.css']
+  styleUrls: ['./jogo-forca.component.css'],
 })
-export class JogoForcaComponent implements OnInit {
+export class JogoForcaComponent implements OnInit, OnChanges {
+  @Input() tentativas!: number;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
+  ngOnChanges(changes: SimpleChanges): void {
+    const totalTentativasAtual = changes?.['tentativas']?.currentValue;
+    if (totalTentativasAtual) {
+      this.tentativas = totalTentativasAtual;
+    }
   }
 
+  ngOnInit(): void {}
 }

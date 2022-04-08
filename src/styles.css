@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  ---first-color: #42774e;
+  ---secundary-color: #83bb6e;
+}
+
+.botao {
+  border-radius: 5px;
+  border: 2px solid var(---first-color);
+  color: var(---first-color);
+  background-color: white;
+  font-weight: bold;
+  padding: 1%;
+}

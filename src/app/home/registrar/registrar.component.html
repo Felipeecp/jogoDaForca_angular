@@ -9,41 +9,45 @@
       <input type="email" class="form-control" placeholder="E-mail" formControlName="email" />
     </div>
     <div class="registrarForm mb-3 col-6">
-      <input type="text" class="form-control" placeholder="CPF" formControlName="cpf" />
+      <input type="text" class="form-control" placeholder="CPF" formControlName="cpf" mask="000.000.000-99" />
     </div>
     <div class="registrarForm mb-3 col-6">
-      <input type="text" class="form-control" placeholder="Celular" formControlName="celular" />
+      <input type="text" class="form-control" placeholder="Celular" formControlName="celular" mask="(00) 00000-0000" />
     </div>
     <div class="registrarForm mb-3 col-6">
       <input type="password" class="form-control" placeholder="Senha" formControlName="senha" />
+    </div>
+    <div class="registrarForm mb-3 col-6">
+      <input type="password" class="form-control" placeholder="Confirmar senha" />
     </div>
 
     <div class="mb-1">
       <strong>Endereço</strong>
     </div>
     <div class="registrarForm mb-3 col-6">
-      <input type="text" class="form-control" placeholder="Logradouro" formControlName="logradouro" />
+      <label class="inputLabel">Logradouro</label>
+      <input type="text" class="form-control" formControlName="logradouro" />
     </div>
     <div class="registrarForm mb-3 col-6">
+      <label class="inputLabel">Estado</label>
       <select class="form-select" formControlName="endereco">
-        <option disabled selected>Selecione seu estado</option>
         <option *ngFor="let endereco of enderecos" [ngValue]="endereco">
           {{endereco.estado}}
         </option>
       </select>
     </div>
     <div class="registrarForm mb-3 col-6">
+      <label class="inputLabel">Cidade</label>
       <select class="form-select">
-        <option disabled selected>Selecione sua cidade</option>
-        <option *ngFor="let endereco of enderecos" [value]="endereco.cidade">
+        <option *ngFor="let endereco of enderecos">
           {{endereco.cidade}}
         </option>
       </select>
     </div>
     <div class="registrarForm mb-3 col-6">
+      <label class="inputLabel">Cep</label>
       <select class="form-select">
-        <option disabled selected>CEP</option>
-        <option *ngFor="let endereco of enderecos" [value]="endereco.cep">
+        <option *ngFor="let endereco of enderecos">
           {{endereco.cep}}
         </option>
       </select>
@@ -53,19 +57,20 @@
       <strong>Dados de pagamento</strong>
     </div>
     <div class="registrarForm mb-3 col-6" formGroupName="cartao">
-      <input type="text" class="form-control" placeholder="Número do cartão" formControlName="numero" />
-      <small id="emailHelp" class="form-text text-muted">XXXX XXXX XXXX XXXX</small>
+      <label class="inputLabel">Número do cartão</label>
+      <input type="text" class="form-control" formControlName="numero" mask="0000 0000 0000 0000" />
     </div>
     <div class="registrarForm mb-3 col-6" formGroupName="cartao">
-      <input type="text" class="form-control" placeholder="Nome do cartão" formControlName="nomeCartao" />
+      <label class="inputLabel">Nome do cartão</label>
+      <input type="text" class="form-control" formControlName="nomeCartao" />
     </div>
     <div class="registrarForm mb-3 col-6" formGroupName="cartao">
-      <input type="text" class="form-control" placeholder="Data de Validade" formControlName="dataValidade" />
-      <small id="emailHelp" class="form-text text-muted">mes/ano</small>
+      <label class="inputLabel">Data de validade</label>
+      <input type="text" class="form-control" formControlName="dataValidade" placeholder="mes/ano" mask="00/00" />
     </div>
     <div class="registrarForm mb-3 col-6" formGroupName="cartao">
-      <input type="text" class="form-control" placeholder="Código de segurança" formControlName="codigoSeguranca" />
-      <small id="emailHelp" class="form-text text-muted">xxx</small>
+      <label class="inputLabel">Código de segurança</label>
+      <input type="text" class="form-control" formControlName="codigoSeguranca" mask="000" />
     </div>
 
     <button class="btn btn-primary col-6">Registrar-se</button>

@@ -4,5 +4,10 @@
   text-align: center;
   align-items: center;
   justify-content: center;
-  margin-top: 8%;
+}
+
+.botao {
+  border-color: var(---secundary-color);
+  padding: 0.5em;
+  color: var(---secundary-color);
 }

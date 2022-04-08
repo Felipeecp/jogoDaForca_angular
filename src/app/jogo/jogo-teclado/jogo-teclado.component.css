@@ -1,6 +1,6 @@
 .teclado {
   max-width: 500px;
-  margin: 30px auto;
+  margin: 10px auto;
   display: flex;
   flex-direction: row;
 }
@@ -17,11 +17,12 @@
   cursor: pointer;
   box-shadow: 0px 2px 2px gray;
   border-radius: 5px;
-  border: 1px solid #e75b7d;
-  color: #e75b7d;
+  border: 1px solid var(---secundary-color);
+  color: var(---secundary-color);
+  background-color: white;
   font-weight: 900;
 }
 
 .teclas button:disabled {
-  opacity: 0.3;
+  opacity: 0.5;
 }

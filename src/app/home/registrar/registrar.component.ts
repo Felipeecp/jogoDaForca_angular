@@ -1,3 +1,4 @@
+import { RegistrarService } from './registrar.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Endereco } from '../endereco/endereco';
@@ -17,16 +18,17 @@ export class RegistrarComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private novoUsuarioService: NovoUsuarioService,
-    private router: Router
+    private router: Router,
+    private registrarService: RegistrarService
   ) {}
 
   ngOnInit(): void {
-    this.enderecos = [
-      { id: 1, estado: 'Maranhão', cidade: 'São Luís', cep: '65030440' },
-      { id: 2, estado: 'Ceará', cidade: 'Fortaleza', cep: '60060095' },
-      { id: 3, estado: 'São Paulo', cidade: 'São Paulo', cep: '01035901' },
-      { id: 4, estado: 'Sergipe', cidade: 'Aracaju', cep: '49010060' },
-    ];
+    this.registrarService.listaDeEnderecos().subscribe({
+      next: (listaEnderecos) => {
+        this.enderecos = listaEnderecos;
+        console.log(this.enderecos);
+      },
+    });
 
     this.registroForm = this.formBuilder.group({
       nome: [''],

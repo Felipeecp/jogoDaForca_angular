@@ -10,5 +10,5 @@
   margin-left: 4px;
   min-width: 20px;
   min-height: 20px;
-  border-bottom: 3px solid #e75b7d;
+  border-bottom: 3px solid var(---secundary-color);
 }

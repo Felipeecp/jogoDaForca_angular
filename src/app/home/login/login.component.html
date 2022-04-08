@@ -1,22 +1,22 @@
-<div class="row">
-  <div class="col-6">
-    <img class="img-fluid d-none d-sm-block" src="../../assets/img/hangman-game.png" alt="Logo jogo da forca">
+<div class="main-login row">
+  <div class="painel-img col-6">
+    <img class="imagem mx-auto img-fluid d-none d-sm-block" src="../../assets/img/hangman-game.png" alt="Logo jogo da forca">
   </div>
   <div class="formulario col-md-6">
-    <h4 class="text-center">Login</h4>
+    <h4 class="text-center titulo-login">Login</h4>
     <form class="formulario form mt-4" (ngSubmit)="(login())">
       <div class="mb-3">
-        <label for="InputEmail">Email</label>
+        <label class="inputLabel" for="InputEmail">Email</label>
         <input type="email" class="form-control" id="inputEmail" placeholder="exemplo@email.com" [(ngModel)]="email" name="email" />
       </div>
       <div class="mb-3">
-        <label for="InputSenha">Senha</label>
+        <label class="inputLabel" for="InputSenha">Senha</label>
         <input type="password" class="form-control" id="inputSenha" placeholder="Senha" [(ngModel)]="senha" name="senha">
       </div>
       <div class="d-grip gap-2">
-        <button type="submit" class="btn btn-primary col-12">Login</button>
+        <button type="submit" class="botao col-12">Login</button>
       </div>
     </form>
-    <p class="mt-3">Não tem uma conta ? <a [routerLink]="['registrar']">Registre-se</a> agora!</p>
+    <p class="mt-3">Não tem uma conta ? <a class="link" [routerLink]="['registrar']">Registre-se</a> agora!</p>
   </div>
 </div>

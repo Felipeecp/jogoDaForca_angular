@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   email = '';
   senha = '';
+  usuarioExiste!: boolean;
 
   constructor(
     private authService: AutenticacaoService,
@@ -24,7 +25,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['jogo']);
       },
       (error) => {
-        alert('Usuário ou senha inválido');
+        this.usuarioExiste = false;
         console.log(error);
       }
     );

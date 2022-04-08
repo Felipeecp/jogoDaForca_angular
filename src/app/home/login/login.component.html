@@ -4,19 +4,25 @@
   </div>
   <div class="formulario col-md-6">
     <h4 class="text-center titulo-login">Login</h4>
-    <form class="formulario form mt-4" (ngSubmit)="(login())">
+    <form class="formulario form mt-4" (ngSubmit)="(login())" #loginForm="ngForm">
       <div class="mb-3">
         <label class="inputLabel" for="InputEmail">Email</label>
-        <input type="email" class="form-control" id="inputEmail" placeholder="exemplo@email.com" [(ngModel)]="email" name="email" />
+        <input type="email" class="form-control" id="inputEmail" placeholder="exemplo@email.com" [(ngModel)]="email" name="email" #campoEmail="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+        <app-mensagem *ngIf="campoEmail.errors?.['required'] && campoEmail.touched" mensagem="Email obrigatório"></app-mensagem>
+        <app-mensagem *ngIf="campoEmail.errors?.['pattern']" mensagem="Email Inválido"></app-mensagem>
       </div>
       <div class="mb-3">
         <label class="inputLabel" for="InputSenha">Senha</label>
-        <input type="password" class="form-control" id="inputSenha" placeholder="Senha" [(ngModel)]="senha" name="senha">
+        <input type="password" class="form-control" id="inputSenha" placeholder="Senha" [(ngModel)]="senha" name="senha" #campoSenha="ngModel" required>
+        <app-mensagem *ngIf="campoSenha.invalid && campoSenha.touched" mensagem="Senha obrigatório"></app-mensagem>
       </div>
       <div class="d-grip gap-2">
-        <button type="submit" class="botao col-12">Login</button>
+        <button type="submit" class="botao col-12" [disabled]="loginForm.invalid">Login</button>
       </div>
     </form>
+    <ng-container *ngIf="usuarioExiste === false">
+      <p class="text-danger d-block mt-2">Usuário ou senha inválidos</p>
+    </ng-container>
     <p class="mt-3">Não tem uma conta ? <a class="link" [routerLink]="['registrar']">Registre-se</a> agora!</p>
   </div>
 </div>

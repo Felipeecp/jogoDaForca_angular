@@ -16,6 +16,7 @@ export class JogoMainComponent implements OnInit {
   categoria: string = '';
   totalTentativas = 6;
   listaDinamicaTemValorVazio: boolean = true;
+  ganhou!: boolean;
 
   constructor(private jogoMainService: JogoMainService) {}
 

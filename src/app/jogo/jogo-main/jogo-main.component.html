@@ -5,12 +5,6 @@
     <app-jogo-teclado (teclaPressionada)="preencheLetraAtual($event)"></app-jogo-teclado>
   </ng-container>
   <ng-template #btnRecomecar>
-    <ng-component *ngIf="(totalTentativas === 0) else mensagemVenceu">
-      <p>Você não conseguiu acerta a palavra, tente novamente</p>
-    </ng-component>
-    <ng-template #mensagemVenceu>
-      <p>Parabens você acertou a palavra !!!</p>
-    </ng-template>
     <button class="botao" (click)="recomecar()">Recomeçar</button>
   </ng-template>
 </div>

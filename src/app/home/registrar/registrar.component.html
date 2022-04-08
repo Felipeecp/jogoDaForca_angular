@@ -1,28 +1,41 @@
-<div class="registrarForm">
-  <h4 class="text-center">Registrar novo usuário</h4>
+<div class="registrarForm mainRegistrar">
+  <h4 class="titulo-registro text-center">Registrar novo usuário</h4>
 
   <form class="form mt-4" [formGroup]="registroForm" (submit)="cadastrar()">
     <div class="registrarForm mb-3 col-6">
-      <input type="text" class="form-control" placeholder="Nome completo" formControlName="nome" />
+      <label class="inputLabel">Nome completo</label>
+      <input type="text" class="form-control" formControlName="nome" />
+      <app-mensagem *ngIf="registroForm.get('nome')?.errors && registroForm.get('nome')?.['touched']" mensagem="Nome incorreto"></app-mensagem>
     </div>
     <div class="registrarForm mb-3 col-6">
-      <input type="email" class="form-control" placeholder="E-mail" formControlName="email" />
+      <label class="inputLabel">Email</label>
+      <input type="email" class="form-control" formControlName="email" />
+      <app-mensagem *ngIf="registroForm.get('email')?.errors?.['required'] && registroForm.get('email')?.['touched']" mensagem="Email obrigatório"></app-mensagem>
+      <app-mensagem *ngIf="registroForm.get('email')?.errors?.['email'] && registroForm.get('email')?.['touched']" mensagem="Email no formato incorreto"></app-mensagem>
     </div>
     <div class="registrarForm mb-3 col-6">
-      <input type="text" class="form-control" placeholder="CPF" formControlName="cpf" mask="000.000.000-99" />
+      <label class="inputLabel">CPF</label>
+      <input type="text" class="form-control" formControlName="cpf" mask="000.000.000-99" />
+      <app-mensagem *ngIf="registroForm.get('cpf')?.errors && registroForm.get('cpf')?.['touched']" mensagem="CPF obrigatório"></app-mensagem>
     </div>
     <div class="registrarForm mb-3 col-6">
-      <input type="text" class="form-control" placeholder="Celular" formControlName="celular" mask="(00) 00000-0000" />
+      <label class="inputLabel">Celular</label>
+      <input type="text" class="form-control" formControlName="celular" mask="(00) 00000-0000" />
+      <app-mensagem *ngIf="registroForm.get('celular')?.errors && registroForm.get('celular')?.['touched']" mensagem="Celular obrigatório"></app-mensagem>
     </div>
     <div class="registrarForm mb-3 col-6">
-      <input type="password" class="form-control" placeholder="Senha" formControlName="senha" />
+      <label class="inputLabel">Senha</label>
+      <input type="password" class="form-control" formControlName="senha" />
+      <app-mensagem *ngIf="registroForm.get('senha')?.errors && registroForm.get('celular')?.['touched']" mensagem="Senha obrigatória"></app-mensagem>
     </div>
     <div class="registrarForm mb-3 col-6">
-      <input type="password" class="form-control" placeholder="Confirmar senha" />
+      <label class="inputLabel">Confirmar senha</label>
+      <input type="password" class="form-control" formControlName="confirmarSenha" />
+      <app-mensagem *ngIf="registroForm.errors?.['senhaDiferente'] && registroForm.get('confirmarSenha')?.['touched']" mensagem="Senhas diferentes"></app-mensagem>
     </div>
 
     <div class="mb-1">
-      <strong>Endereço</strong>
+      <strong class="subtitle">Endereço</strong>
     </div>
     <div class="registrarForm mb-3 col-6">
       <label class="inputLabel">Logradouro</label>
@@ -54,7 +67,7 @@
     </div>
 
     <div class="mb-1">
-      <strong>Dados de pagamento</strong>
+      <strong class="subtitle">Dados de pagamento</strong>
     </div>
     <div class="registrarForm mb-3 col-6" formGroupName="cartao">
       <label class="inputLabel">Número do cartão</label>
@@ -66,7 +79,7 @@
     </div>
     <div class="registrarForm mb-3 col-6" formGroupName="cartao">
       <label class="inputLabel">Data de validade</label>
-      <input type="text" class="form-control" formControlName="dataValidade" placeholder="mes/ano" mask="00/00" />
+      <input type="text" class="form-control" formControlName="dataValidade" mask="00/00" />
     </div>
     <div class="registrarForm mb-3 col-6" formGroupName="cartao">
       <label class="inputLabel">Código de segurança</label>

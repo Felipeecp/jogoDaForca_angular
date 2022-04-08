@@ -1,10 +1,35 @@
+.mainRegistrar {
+  padding-top: 2em;
+}
+
 .registrarForm {
   display: flex;
   flex-direction: column;
   text-align: center;
   margin: 0 auto;
+  min-width: 70%;
+}
+
+.titulo-registro {
+  color: var(---first-color);
+}
+
+.subtitle {
+  color: var(---first-color);
+  font-size: 1.2em;
 }
 
 .inputLabel {
+  color: var(---first-color);
+  text-align: start;
+  font-weight: 500;
+  margin-bottom: 0.1em;
+}
+
+::placeholder {
+  color: var(---first-color);
+}
+
+.aviso {
   text-align: start;
 }

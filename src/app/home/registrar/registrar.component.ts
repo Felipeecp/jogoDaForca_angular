@@ -2,9 +2,16 @@ import { RegistrarService } from './registrar.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Endereco } from '../endereco/endereco';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { NovoUsuarioService } from '../novo-usuario/novo-usuario.service';
 import { NovoUsuario } from '../novo-usuario/novo-usuario';
+import { validarSenha } from './confirmaSenha.validator';
 
 @Component({
   selector: 'app-registrar',
@@ -30,25 +37,33 @@ export class RegistrarComponent implements OnInit {
       },
     });
 
-    this.registroForm = this.formBuilder.group({
-      nome: [''],
-      email: [''],
-      cpf: [''],
-      celular: [''],
-      senha: [''],
-      logradouro: [''],
-      endereco: [''],
-      cartao: this.formBuilder.group({
-        numero: [''],
-        nomeCartao: [''],
-        dataValidade: [''],
-        codigoSeguranca: [''],
-      }),
-    });
+    this.registroForm = this.formBuilder.group(
+      {
+        nome: ['', [Validators.required, Validators.minLength(4)]],
+        email: ['', [Validators.required, Validators.email]],
+        cpf: ['', [Validators.required]],
+        celular: ['', [Validators.required]],
+        senha: ['', [Validators.required, Validators.minLength(6)]],
+        confirmarSenha: [''],
+        logradouro: ['', [Validators.required]],
+        endereco: ['', [Validators.required, Validators.minLength(4)]],
+        cartao: this.formBuilder.group({
+          numero: [''],
+          nomeCartao: [''],
+          dataValidade: [''],
+          codigoSeguranca: [''],
+        }),
+      },
+      {
+        validators: [validarSenha],
+      }
+    );
   }
 
   cadastrar() {
+    this.registroForm.removeControl('confirmarSenha');
     const novoUsuario = this.registroForm.getRawValue() as NovoUsuario;
+    console.log(novoUsuario);
     this.novoUsuarioService.cadastraNovoUsuario(novoUsuario).subscribe(
       () => {
         this.router.navigate(['']);

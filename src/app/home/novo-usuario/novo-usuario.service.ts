@@ -10,7 +10,7 @@ export class NovoUsuarioService {
 
   cadastraNovoUsuario(novoUsuario: NovoUsuario) {
     return this.httpClient.post(
-      'http://localhost:8080/jogoDaForca/api/jogo/adicionarUsuario',
+      'http://localhost:8080/jogoDaForca/api/jogo/usuario/adicionarUsuario',
       novoUsuario
     );
   }

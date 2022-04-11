@@ -16,17 +16,17 @@
     <div class="registrarForm mb-3 col-6">
       <label class="inputLabel">CPF</label>
       <input type="text" class="form-control" formControlName="cpf" mask="000.000.000-99" />
-      <app-mensagem *ngIf="registroForm.get('cpf')?.errors && registroForm.get('cpf')?.['touched']" mensagem="CPF obrigatório"></app-mensagem>
+      <app-mensagem *ngIf="registroForm.get('cpf')?.errors && registroForm.get('cpf')?.['touched']" mensagem="CPF inválido"></app-mensagem>
     </div>
     <div class="registrarForm mb-3 col-6">
       <label class="inputLabel">Celular</label>
       <input type="text" class="form-control" formControlName="celular" mask="(00) 00000-0000" />
-      <app-mensagem *ngIf="registroForm.get('celular')?.errors && registroForm.get('celular')?.['touched']" mensagem="Celular obrigatório"></app-mensagem>
+      <app-mensagem *ngIf="registroForm.get('celular')?.errors && registroForm.get('celular')?.['touched']" mensagem="Celular inválido"></app-mensagem>
     </div>
     <div class="registrarForm mb-3 col-6">
       <label class="inputLabel">Senha</label>
       <input type="password" class="form-control" formControlName="senha" />
-      <app-mensagem *ngIf="registroForm.get('senha')?.errors && registroForm.get('celular')?.['touched']" mensagem="Senha obrigatória"></app-mensagem>
+      <app-mensagem *ngIf="registroForm.get('senha')?.errors && registroForm.get('senha')?.['touched']" mensagem="Senha inválida"></app-mensagem>
     </div>
     <div class="registrarForm mb-3 col-6">
       <label class="inputLabel">Confirmar senha</label>
@@ -34,36 +34,46 @@
       <app-mensagem *ngIf="registroForm.errors?.['senhaDiferente'] && registroForm.get('confirmarSenha')?.['touched']" mensagem="Senhas diferentes"></app-mensagem>
     </div>
 
-    <div class="mb-1">
-      <strong class="subtitle">Endereço</strong>
-    </div>
-    <div class="registrarForm mb-3 col-6">
-      <label class="inputLabel">Logradouro</label>
-      <input type="text" class="form-control" formControlName="logradouro" />
-    </div>
-    <div class="registrarForm mb-3 col-6">
-      <label class="inputLabel">Estado</label>
-      <select class="form-select" formControlName="endereco">
-        <option *ngFor="let endereco of enderecos" [ngValue]="endereco">
-          {{endereco.estado}}
-        </option>
-      </select>
-    </div>
-    <div class="registrarForm mb-3 col-6">
-      <label class="inputLabel">Cidade</label>
-      <select class="form-select">
-        <option *ngFor="let endereco of enderecos">
-          {{endereco.cidade}}
-        </option>
-      </select>
-    </div>
-    <div class="registrarForm mb-3 col-6">
-      <label class="inputLabel">Cep</label>
-      <select class="form-select">
-        <option *ngFor="let endereco of enderecos">
-          {{endereco.cep}}
-        </option>
-      </select>
+    <div formGroupName="endereco">
+      <div class="mb-1">
+        <strong class="subtitle">Endereço</strong>
+      </div>
+      <div class="registrarForm mb-3 col-6">
+        <label class="inputLabel">Cep</label>
+        <select class="form-select" (blur)="consultarCEP()" formControlName="cep">
+          <option *ngFor="let endereco of enderecos" [value]="endereco.cep">
+            {{endereco.cep}}
+          </option>
+        </select>
+        <app-mensagem *ngIf="registroForm.get('endereco.cep')?.errors && registroForm.get('endereco.cep')?.['touched']" mensagem="CEP inválido"></app-mensagem>
+      </div>
+      <div class="registrarForm mb-3 col-6">
+        <label class="inputLabel">Logradouro</label>
+        <select class="form-select" formControlName="logradouro">
+          <option *ngFor="let endereco of enderecos" [value]="endereco.logradouro">
+            {{endereco.logradouro}}
+          </option>
+        </select>
+        <app-mensagem *ngIf="registroForm.get('endereco.logradouro')?.errors && registroForm.get('endereco.logradouro')?.['touched']" mensagem="Logradouro é obrigatório"></app-mensagem>
+      </div>
+      <div class="registrarForm mb-3 col-6">
+        <label class="inputLabel">Estado</label>
+        <select class="form-select" formControlName="estado">
+          <option *ngFor="let endereco of enderecos" [value]="endereco.estado">
+            {{endereco.estado}}
+          </option>
+        </select>
+        <app-mensagem *ngIf="registroForm.get('endereco.estado')?.errors && registroForm.get('endereco.estado')?.['touched']" mensagem="Estado é obrigatório"></app-mensagem>
+      </div>
+      <div class="registrarForm mb-3 col-6">
+        <label class="inputLabel">Cidade</label>
+        <select class="form-select" formControlName="cidade">
+          <option *ngFor="let endereco of enderecos" [value]="endereco.cidade">
+            {{endereco.cidade}}
+          </option>
+        </select>
+        <app-mensagem *ngIf="registroForm.get('endereco.cidade')?.errors && registroForm.get('endereco.cidade')?.['touched']" mensagem="Cidade é obrigatória"></app-mensagem>
+      </div>
     </div>
 
     <div class="mb-1">
@@ -71,19 +81,23 @@
     </div>
     <div class="registrarForm mb-3 col-6" formGroupName="cartao">
       <label class="inputLabel">Número do cartão</label>
-      <input type="text" class="form-control" formControlName="numero" mask="0000 0000 0000 0000" />
+      <input type="text" class="form-control" placeholder="**** **** **** ****" formControlName="numero" mask="0000 0000 0000 0000" />
+      <app-mensagem *ngIf="registroForm.get('cartao.numero')?.errors && registroForm.get('cartao.numero')?.['touched']" mensagem="Número do cartão inválido"></app-mensagem>
     </div>
     <div class="registrarForm mb-3 col-6" formGroupName="cartao">
-      <label class="inputLabel">Nome do cartão</label>
-      <input type="text" class="form-control" formControlName="nomeCartao" />
+      <label class="inputLabel">Nome no cartão</label>
+      <input type="text" class="form-control" placeholder="Ex: João José" formControlName="nome" />
+      <app-mensagem *ngIf="registroForm.get('cartao.nome')?.errors && registroForm.get('cartao.nome')?.['touched']" mensagem="Nome no cartão inválido"></app-mensagem>
     </div>
     <div class="registrarForm mb-3 col-6" formGroupName="cartao">
       <label class="inputLabel">Data de validade</label>
-      <input type="text" class="form-control" formControlName="dataValidade" mask="00/00" />
+      <input type="text" class="form-control" placeholder="01/22" formControlName="dataValidade" mask="00/00" [dropSpecialCharacters]="false" />
+      <app-mensagem *ngIf="registroForm.get('cartao.dataValidade')?.errors && registroForm.get('cartao.dataValidade')?.['touched']" mensagem="Data de válidade inválida"></app-mensagem>
     </div>
     <div class="registrarForm mb-3 col-6" formGroupName="cartao">
       <label class="inputLabel">Código de segurança</label>
-      <input type="text" class="form-control" formControlName="codigoSeguranca" mask="000" />
+      <input type="text" class="form-control" placeholder="***" formControlName="codigoSeguranca" mask="000" />
+      <app-mensagem *ngIf="registroForm.get('cartao.codigoSeguranca')?.errors && registroForm.get('cartao.codigoSeguranca')?.['touched']" mensagem="Código de segurança inválido"></app-mensagem>
     </div>
 
     <button class="btn btn-primary col-6">Registrar-se</button>

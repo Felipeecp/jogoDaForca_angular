@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 })
 export class RegistrarService {
   urlApiListaEnderecos =
-    'http://localhost:8080/jogoDaForca/api/jogo/obterListaEnderecosJson';
+    'http://localhost:8080/jogoDaForca/api/jogo/usuario/obterListaEnderecosJson';
 
   constructor(private httpClient: HttpClient) {}
 

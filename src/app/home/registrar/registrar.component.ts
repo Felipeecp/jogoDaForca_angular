@@ -41,17 +41,22 @@ export class RegistrarComponent implements OnInit {
       {
         nome: ['', [Validators.required, Validators.minLength(4)]],
         email: ['', [Validators.required, Validators.email]],
-        cpf: ['', [Validators.required]],
+        cpf: ['', [Validators.required, Validators.minLength(11)]],
         celular: ['', [Validators.required]],
         senha: ['', [Validators.required, Validators.minLength(6)]],
         confirmarSenha: [''],
-        logradouro: ['', [Validators.required]],
-        endereco: ['', [Validators.required, Validators.minLength(4)]],
+        endereco: this.formBuilder.group({
+          id: ['', Validators.required],
+          cep: ['', Validators.required],
+          logradouro: ['', Validators.required],
+          cidade: ['', Validators.required],
+          estado: ['', Validators.required],
+        }),
         cartao: this.formBuilder.group({
-          numero: [''],
-          nomeCartao: [''],
-          dataValidade: [''],
-          codigoSeguranca: [''],
+          numero: ['', [Validators.required]],
+          nome: ['', [Validators.required]],
+          dataValidade: ['', Validators.required],
+          codigoSeguranca: ['', Validators.required],
         }),
       },
       {
@@ -64,13 +69,37 @@ export class RegistrarComponent implements OnInit {
     this.registroForm.removeControl('confirmarSenha');
     const novoUsuario = this.registroForm.getRawValue() as NovoUsuario;
     console.log(novoUsuario);
-    this.novoUsuarioService.cadastraNovoUsuario(novoUsuario).subscribe(
-      () => {
+    this.novoUsuarioService.cadastraNovoUsuario(novoUsuario).subscribe({
+      next: () => {
         this.router.navigate(['']);
       },
-      (error) => {
+      error: (error) => {
         console.log(error);
-      }
-    );
+      },
+    });
+  }
+
+  consultarCEP() {
+    const cep = this.registroForm.get('endereco.cep')?.value;
+    if (cep != null) {
+      let dados!: Endereco;
+      this.enderecos.forEach((endereco) => {
+        if (endereco.cep === cep) {
+          dados = endereco;
+        }
+      });
+      this.preencherEndereco(dados);
+    }
+  }
+
+  preencherEndereco(dados: Endereco) {
+    this.registroForm.patchValue({
+      endereco: {
+        id: dados.id,
+        logradouro: dados.logradouro,
+        cidade: dados.cidade,
+        estado: dados.estado,
+      },
+    });
   }
 }

@@ -1,12 +1,12 @@
 import { Cartao } from '../cartao/cartao';
 import { Endereco } from './../endereco/endereco';
 export interface NovoUsuario {
-  nome: String;
-  email: String;
-  cpf: String;
-  celular: String;
-  senha: String;
-  logradouro: String;
+  nome: string;
+  email: string;
+  cpf: string;
+  celular: string;
+  senha: string;
+  pontos: number;
   endereco: Endereco;
   cartao: Cartao;
 }

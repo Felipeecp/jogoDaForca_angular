@@ -1,3 +1,6 @@
+import { NovoUsuario } from './../../home/novo-usuario/novo-usuario';
+import { AutenticacaoService } from './../../autenticacao/autenticacao.service';
+import { LoginComponent } from './../../home/login/login.component';
 import { Palavra } from './../../home/models/palavra';
 import { JogoMainService } from './jogo-main.service';
 import { Component, OnInit } from '@angular/core';
@@ -17,8 +20,13 @@ export class JogoMainComponent implements OnInit {
   totalTentativas = 6;
   listaDinamicaTemValorVazio: boolean = true;
   ganhou!: boolean;
+  usuarioLogado!: NovoUsuario;
+  pontos: number = 0;
 
-  constructor(private jogoMainService: JogoMainService) {}
+  constructor(
+    private jogoMainService: JogoMainService,
+    private authService: AutenticacaoService
+  ) {}
 
   ngOnInit(): void {
     this.jogoMainService.listaPalavras().subscribe({
@@ -26,6 +34,7 @@ export class JogoMainComponent implements OnInit {
         this.listaPalavras = response;
         this.selecionarPalavra();
         this.preencheListaDinamica();
+        this.usuarioLogado = this.authService.usuarioAtual;
       },
     });
   }
@@ -48,8 +57,10 @@ export class JogoMainComponent implements OnInit {
 
   preencheLetraAtual(letra: string) {
     this.letraAtual = letra;
-    const letraMinuscula = letra.toLowerCase();
-    const posicao = this.palavraEscolhida.nome.indexOf(letraMinuscula);
+    const letraMinuscula = letra.toUpperCase();
+    const posicao = this.palavraEscolhida.nome
+      .toUpperCase()
+      .indexOf(letraMinuscula);
     console.log(this.totalTentativas !== 0 && this.listaDinamicaTemValorVazio);
     if (posicao < 0) {
       this.totalTentativas--;
@@ -58,6 +69,12 @@ export class JogoMainComponent implements OnInit {
         if (this.letrasPalavraEscolhida[index] === letraMinuscula) {
           this.listaDinamica[index] = letraMinuscula;
           this.listaDinamicaTemValorVazio = this.listaDinamica.includes(' ');
+          console.log(this.usuarioLogado.pontos);
+          if (!this.listaDinamicaTemValorVazio) {
+            this.pontos += this.listaDinamica.length;
+            this.usuarioLogado.pontos = this.pontos;
+            console.log(this.usuarioLogado.pontos);
+          }
         }
       }
     }
@@ -66,8 +83,13 @@ export class JogoMainComponent implements OnInit {
   selecionarPalavra() {
     const indexPalavra = Math.floor(Math.random() * this.listaPalavras.length);
     this.palavraEscolhida = this.listaPalavras[indexPalavra];
-    this.letrasPalavraEscolhida = this.palavraEscolhida.nome.split('');
+    this.letrasPalavraEscolhida = this.palavraEscolhida.nome
+      .toUpperCase()
+      .split('');
     this.categoria = this.palavraEscolhida.categoria;
-    console.log(this.palavraEscolhida.nome);
+  }
+
+  atualizarPontosUsuario() {
+    return null;
   }
 }

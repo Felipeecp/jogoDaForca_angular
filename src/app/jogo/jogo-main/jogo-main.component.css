@@ -10,4 +10,26 @@
   border-color: var(---secundary-color);
   padding: 0.5em;
   color: var(---secundary-color);
+  margin-right: 0.3em;
+}
+
+.botao-perdeu {
+  border-color: var(---red);
+  padding: 0.5em;
+  color: var(---red);
+  border-radius: 4px;
+}
+
+.card {
+  width: 16rem;
+  /* background-color: var(---light-red); */
+}
+
+.card-perdeu {
+  background-color: var(---light-red);
+}
+
+.card-venceu {
+  width: 18rem;
+  background-color: var(---light-green);
 }

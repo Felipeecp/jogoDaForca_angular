@@ -1,3 +1,4 @@
+import { NovoUsuario } from './../../home/novo-usuario/novo-usuario';
 import {
   Component,
   Input,

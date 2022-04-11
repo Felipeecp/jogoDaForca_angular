@@ -8,9 +8,9 @@ import { Injectable } from '@angular/core';
 })
 export class JogoMainService {
   private urlPalavraAleatoria =
-    'http://localhost:8080/jogoDaForca/api/jogo/obterPalavraAleatoria';
+    'http://localhost:8080/jogoDaForca/api/jogo/palavra/obterPalavraAleatoria';
   private urlListaPalavras =
-    'http://localhost:8080/jogoDaForca/api/jogo/palavras';
+    'http://localhost:8080/jogoDaForca/api/jogo/palavra/listarPalavras';
 
   constructor(private httpCliente: HttpClient) {}
 

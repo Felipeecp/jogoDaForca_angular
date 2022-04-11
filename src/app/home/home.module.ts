@@ -18,6 +18,6 @@ import { MensagemModule } from '../componentes/mensagem/mensagem.module';
     ReactiveFormsModule,
     NgxMaskModule.forChild(),
   ],
-  exports: [HomeComponent],
+  exports: [HomeComponent, LoginComponent],
 })
 export class HomeModule {}

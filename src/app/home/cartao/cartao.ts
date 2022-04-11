@@ -1,6 +1,6 @@
 export interface Cartao {
-  numero: String;
-  nome: String;
-  dataValidade: String;
-  codigoSeguranca: String;
+  numero: string;
+  nome: string;
+  dataValidade: string;
+  codigoSeguranca: string;
 }

@@ -5,6 +5,24 @@
     <app-jogo-teclado (teclaPressionada)="preencheLetraAtual($event)"></app-jogo-teclado>
   </ng-container>
   <ng-template #btnRecomecar>
-    <button class="botao" (click)="recomecar()">Recomeçar</button>
+    <div *ngIf="totalTentativas === 0 else mensagemVenceu">
+      <div class="card card-perdeu">
+        <div class="card-body">
+          <h5 class="card-title">Você perdeu...</h5>
+          <p class="card-text">Tente novamente</p>
+          <button (click)="recomecar()" class="botao-perdeu">Recomeçar</button>
+        </div>
+      </div>
+    </div>
+    <ng-template #mensagemVenceu>
+      <div class="card card-venceu">
+        <div class="card-body">
+          <h5 class="card-title">Parabêns você venceu!!!</h5>
+          <p class="card-text">Acesse o ranking para ver o melhores jogadores</p>
+          <button (click)="recomecar()" class="botao">Recomeçar</button>
+          <button (click)="atualizarPontosUsuario()" class="botao" [routerLink]="['ranking']">Ranking</button>
+        </div>
+      </div>
+    </ng-template>
   </ng-template>
 </div>

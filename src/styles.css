@@ -1,6 +1,9 @@
 :root {
   ---first-color: #42774e;
   ---secundary-color: #83bb6e;
+  ---light-green: #b4eca0;
+  ---light-red: #eca0a0;
+  ---red: #803333;
 }
 
 .botao {

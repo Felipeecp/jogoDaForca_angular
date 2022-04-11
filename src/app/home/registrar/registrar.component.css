@@ -26,10 +26,6 @@
   margin-bottom: 0.1em;
 }
 
-::placeholder {
-  color: var(---first-color);
-}
-
 .aviso {
   text-align: start;
 }

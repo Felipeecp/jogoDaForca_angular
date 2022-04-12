@@ -17,11 +17,12 @@ O site deveria ter:
 - Angular
 - Typescript
 - Bootstrap
-- consumo de api Java que pode ser acessada neste [reposit[orio](https://github.com/Felipeecp/jogoDaForca_api)
+- consumo de api Java (descrições da api neste [repositorio](https://github.com/Felipeecp/jogoDaForca_api))
 
 ## Desenvolvimento
 
 Durante o programa foi estudado cursos sobre SQL Server, JavaEE e Angular.
+
 **Backend**
 
 - Para desenvolver o backend da aplicação, optei por desenvolver a solução criando uma API REST usando o JavaEE, usando principalmente JAX-RS e Hibernate.

@@ -35,6 +35,7 @@ export class JogoMainComponent implements OnInit {
         this.selecionarPalavra();
         this.preencheListaDinamica();
         this.usuarioLogado = this.authService.usuarioAtual;
+        console.log(this.usuarioLogado);
       },
     });
   }
